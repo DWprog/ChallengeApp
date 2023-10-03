@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp
 {
@@ -6,50 +7,29 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            string name;
-            int sex; //1=mężczyzna, 0=kobieta
-            int age;
+            long number = 1234567892334445555;
+            string numInStr = number.ToString();
+            char[] letters = numInStr.ToCharArray();
+
+            List<char> digits = new() { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            int counter;
+
+            Console.WriteLine($"Liczba {number} ma następującą ilość cyfr:");
+
+            foreach (var digit in digits)
+            {
+                counter = 0;
+                foreach (var letter in letters)
+                {
+                    if(digit==letter)
+                    {
+                        counter++;
+                    }
+                }
+                Console.WriteLine($"{digit} => {counter}");
+            }
             
-            int ageLimit = 30;
-            int ageAdult = 18;
-
-            name = "Dorota";
-            sex = 0;
-            age = 37;
-
-            if (sex==1) //mężczyzna
-            {
-                if (age<ageAdult)
-                {
-                    Console.WriteLine("Niepełnoletni mężczyzna");
-                }
-
-                else if (age<ageLimit)
-                {
-                    Console.WriteLine($"Mężczyzna poniżej {ageLimit} lat");
-                }
-                else
-                {
-                    Console.WriteLine($"{name}, lat {age}");
-                }
-            }
-
-            if (sex == 0) //kobieta
-            {
-                if (age < ageAdult)
-                {
-                    Console.WriteLine("Niepełnoletnia kobieta");
-                }
-
-                else if (age < ageLimit)
-                {
-                    Console.WriteLine($"Kobieta poniżej {ageLimit} lat");
-                }
-                else
-                {
-                    Console.WriteLine($"{name}, lat {age}");
-                }
-            }
+            
         }
     }
 }
