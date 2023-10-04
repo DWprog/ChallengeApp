@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp
 {
@@ -7,29 +8,52 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            long number = 1234567892334445555;
-            string numInStr = number.ToString();
-            char[] letters = numInStr.ToCharArray();
 
-            List<char> digits = new() { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            int counter;
+            var user1 = new Employee("Marek", "Nowak", 25);
+            var user2 = new Employee("Tomasz", "Ibisz", 39);
+            var user3 = new Employee("Maria", "Kowalska", 51);
 
-            Console.WriteLine($"Liczba {number} ma następującą ilość cyfr:");
+            List<Employee> employees = new List<Employee>();
+            employees.Add(user1);
+            employees.Add(user2);
+            employees.Add(user3);
+                        
+            user1.ScoreAdd(2);
+            user1.ScoreAdd(9);
+            user1.ScoreAdd(1);
+            user1.ScoreAdd(7);
+            user1.ScoreAdd(4); //suma 23
 
-            foreach (var digit in digits)
+            user2.ScoreAdd(7);
+            user2.ScoreAdd(10);
+            user2.ScoreAdd(2);
+            user2.ScoreAdd(4);
+            user2.ScoreAdd(6); //suma 29
+
+            user3.ScoreAdd(8);
+            user3.ScoreAdd(4);
+            user3.ScoreAdd(3);
+            user3.ScoreAdd(5);
+            user3.ScoreAdd(1); //suma 21
+
+            int maxScore = 0;
+
+            foreach (var employee in employees)
             {
-                counter = 0;
-                foreach (var letter in letters)
+                if(employee.ScoreSum>maxScore)
                 {
-                    if(digit==letter)
-                    {
-                        counter++;
-                    }
+                    maxScore = employee.ScoreSum;
                 }
-                Console.WriteLine($"{digit} => {counter}");
             }
-            
-            
+
+            foreach (var employee in employees)
+            {
+                if (employee.ScoreSum==maxScore)
+                {
+                    employee.ShowData();
+                }
+            }
+
         }
     }
 }
