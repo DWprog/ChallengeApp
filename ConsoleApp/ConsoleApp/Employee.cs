@@ -11,7 +11,7 @@ namespace ConsoleApp
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public int Age { get; set; }
-        private List<int> score = new List<int>();
+        private List<double> grades = new List<double>();
 
         public Employee(string name, string surname,int age)
         {
@@ -19,23 +19,19 @@ namespace ConsoleApp
             this.Surname = surname;
             this.Age = age;
         }
-        public void ScoreAdd(int number)
+        public void AddGrade(double grade)
         {
-            this.score.Add(number);
+            this.grades.Add(grade);
         }
-        public int ScoreSum
+        public Statistics GetStatistics()
         {
-            get
-            {
-                return this.score.Sum();
-            }
-        }
-        public void ShowData()
-        {
-            Console.WriteLine($"Imię: {Name}");
-            Console.WriteLine($"Nazwisko: {Surname}");
-            Console.WriteLine($"Wiek: {Age}");
-            Console.WriteLine($"Suma punktów: {ScoreSum}");
-        }
+            var statistics = new Statistics();
+            statistics.Average = this.grades.Average();
+            statistics.Max = this.grades.Max();
+            statistics.Min = this.grades.Min();
+            statistics.Sum = this.grades.Sum();
+
+            return statistics;
+        }       
     }
 }
