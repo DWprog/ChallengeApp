@@ -11,7 +11,7 @@ namespace ConsoleApp
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public int Age { get; set; }
-        public List<double> grades = new List<double>();
+        private List<double> grades = new List<double>();
 
         public Employee(string name, string surname, int age)
         {
@@ -66,127 +66,7 @@ namespace ConsoleApp
             return statistics;
         }
 
-        public Statistics GetStatisticsWithForEach()
-        {
-            var statistics = new Statistics();
-            int count = 0;
-            double sum = 0;
-            double min = double.MaxValue;
-            double max = double.MinValue;
 
-            foreach (var grade in this.grades)
-            {
-                if (grade > max)
-                {
-                    max = grade;
-                }
-
-                if (grade < min)
-                {
-                    min = grade;
-                }
-
-                sum += grade;
-                count++;
-            }
-            statistics.Average = sum / count;
-            statistics.Max = max;
-            statistics.Min = min;
-            statistics.Sum = sum;
-
-            return statistics;
-        }
-        public Statistics GetStatisticsWithFor()
-        {
-            var statistics = new Statistics();
-            int count;
-            double sum = 0;
-            double min = double.MaxValue;
-            double max = double.MinValue;
-
-
-            for (count = 0; count < this.grades.Count; count++)
-            {
-                if (this.grades[count] > max)
-                {
-                    max = this.grades[count];
-                }
-
-                if (this.grades[count] < min)
-                {
-                    min = this.grades[count];
-                }
-
-                sum += this.grades[count];
-            }
-            statistics.Average = sum / count;
-            statistics.Max = max;
-            statistics.Min = min;
-            statistics.Sum = sum;
-
-            return statistics;
-        }
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            var statistics = new Statistics();
-            double sum = 0;
-            double min = double.MaxValue;
-            double max = double.MinValue;
-            int count = 0;
-
-            do
-            {
-                if (this.grades[count] > max)
-                {
-                    max = this.grades[count];
-                }
-
-                if (this.grades[count] < min)
-                {
-                    min = this.grades[count];
-                }
-
-                sum += this.grades[count];
-                count++;
-            } while (count < this.grades.Count);
-
-            statistics.Average = sum / count;
-            statistics.Max = max;
-            statistics.Min = min;
-            statistics.Sum = sum;
-
-            return statistics;
-        }
-        public Statistics GetStatisticsWithWhile()
-        {
-            var statistics = new Statistics();
-            double sum = 0;
-            double min = double.MaxValue;
-            double max = double.MinValue;
-            int count = 0;
-
-            while (count < this.grades.Count)
-            {
-                if (this.grades[count] > max)
-                {
-                    max = this.grades[count];
-                }
-
-                if (this.grades[count] < min)
-                {
-                    min = this.grades[count];
-                }
-
-                sum += this.grades[count];
-                count++;
-            }
-            statistics.Average = sum / count;
-            statistics.Max = max;
-            statistics.Min = min;
-            statistics.Sum = sum;
-
-            return statistics;
-        }
 
         public void ShowStatistics(Statistics statistics, string no)
         {
