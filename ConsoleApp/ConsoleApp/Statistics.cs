@@ -12,6 +12,6 @@ namespace ConsoleApp
         public double Max { get; set; }
         public double Average { get; set; }
         public double Sum { get; set; }
-
+        public char AverageLetter { get; set; }
     }
 }

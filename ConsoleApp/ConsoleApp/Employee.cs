@@ -37,6 +37,10 @@ namespace ConsoleApp
             {
                 this.AddGrade(result);
             }
+            else if (char.TryParse(grade, out char resultChar))
+            {
+                this.AddGrade(resultChar);
+            }
             else
             {
                 Console.WriteLine("String is not double");
@@ -48,7 +52,38 @@ namespace ConsoleApp
             this.AddGrade((double)grade);
         }
 
+        public void AddGrade(char grade)
+        {
 
+
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(20);
+                    break;
+
+                default:
+                    Console.WriteLine($"{grade} is wrong Letter");
+                    break;
+            }
+        }
 
 
 
@@ -63,18 +98,46 @@ namespace ConsoleApp
             statistics.Min = this.grades.Min();
             statistics.Sum = this.grades.Sum();
 
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
+
             return statistics;
         }
 
 
 
-        public void ShowStatistics(Statistics statistics, string no)
+        public void ShowStatistics(Statistics statistics, string no = "")
         {
+            Console.WriteLine("Grades are:");
+            foreach (var grade in this.grades)
+            {
+                Console.WriteLine($"{grade}");
+            }
+            Console.WriteLine();
+
             Console.WriteLine($"{no}");
             Console.WriteLine($"Average: {statistics.Average:N2}");
             Console.WriteLine($"Max: {statistics.Max}");
             Console.WriteLine($"Min: {statistics.Min}");
-            Console.WriteLine($"Sum: {statistics.Sum}\n");
+            Console.WriteLine($"Sum: {statistics.Sum}");
+            Console.WriteLine($"Average letter: {statistics.AverageLetter}");
+            Console.WriteLine();
         }
     }
 }
