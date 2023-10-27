@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public int Age { get; set; }
         private List<double> grades = new List<double>();
 
-        public Employee(string name, string surname, int age)
+        public Employee(string name, string surname, char sex, int age)
+            : base(name, surname, sex, age)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Age = age;
         }
+
         public void AddGrade(double grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -54,25 +50,20 @@ namespace ConsoleApp
 
         public void AddGrade(char grade)
         {
-            switch (grade)
+            switch (char.ToLower(grade))
             {
-                case 'A':
                 case 'a':
                     this.AddGrade(100);
                     break;
-                case 'B':
                 case 'b':
                     this.AddGrade(80);
                     break;
-                case 'C':
                 case 'c':
                     this.AddGrade(60);
                     break;
-                case 'D':
                 case 'd':
                     this.AddGrade(40);
                     break;
-                case 'E':
                 case 'e':
                     this.AddGrade(20);
                     break;

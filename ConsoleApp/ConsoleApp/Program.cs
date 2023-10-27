@@ -12,7 +12,7 @@ namespace ConsoleApp
             Console.WriteLine("===========================================");
             Console.WriteLine();
 
-            var employee = new Employee("Adam", "Kowalski", 35);
+            var employee = new Employee("Adam", "Kowalski",'M', 35);
 
             while (true)
             {
