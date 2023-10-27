@@ -23,7 +23,17 @@ namespace ConsoleApp
                     Console.WriteLine();
                     break;
                 }
-                employee.AddGrade(input);
+
+                try
+                {
+                    employee.AddGrade(input);
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine($"Exception catched: {e.Message}");
+                }
             }
 
 
