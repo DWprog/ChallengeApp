@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         private List<double> grades = new List<double>();
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
-        public Employee(string name, string surname)
+        public Supervisor(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
@@ -32,17 +32,77 @@ namespace ConsoleApp
 
         public void AddGrade(string grade)
         {
-            if (double.TryParse(grade, out double result))
+            switch (grade)
             {
-                this.AddGrade(result);
-            }
-            else if (char.TryParse(grade, out char resultChar))
-            {
-                this.AddGrade(resultChar);
-            }
-            else
-            {
-                throw new Exception("String is not double");
+                case "6":
+                    this.AddGrade(100);
+                    break;
+                case "-6":
+                case "6-":
+                    this.AddGrade(95);
+                    break;
+                case "+5":
+                case "5+":
+                    this.AddGrade(85);
+                    break;
+                case "5":
+                    this.AddGrade(80);
+                    break;
+                case "-5":
+                case "5-":
+                    this.AddGrade(75);
+                    break;
+                case "+4":
+                case "4+":
+                    this.AddGrade(65);
+                    break;
+                case "4":
+                    this.AddGrade(60);
+                    break;
+                case "-4":
+                case "4-":
+                    this.AddGrade(55);
+                    break;
+                case "+3":
+                case "3+":
+                    this.AddGrade(45);
+                    break;
+                case "3":
+                    this.AddGrade(40);
+                    break;
+                case "-3":
+                case "3-":
+                    this.AddGrade(35);
+                    break;
+                case "+2":
+                case "2+":
+                    this.AddGrade(25);
+                    break;
+                case "2":
+                    this.AddGrade(20);
+                    break;
+                case "-2":
+                case "2-":
+                    this.AddGrade(15);
+                    break;
+                case "1":
+                    this.AddGrade(0);
+                    break;
+
+                default:
+                    if (double.TryParse(grade, out double result))
+                    {
+                        this.AddGrade(result);
+                    }
+                    else if (char.TryParse(grade, out char resultChar))
+                    {
+                        this.AddGrade(resultChar);
+                    }
+                    else
+                    {
+                        throw new Exception("String is not double");
+                    }
+                    break;
             }
         }
 
@@ -105,7 +165,6 @@ namespace ConsoleApp
 
             return statistics;
         }
-
         public void ShowStatistics(Statistics statistics, string no = "")
         {
             Console.WriteLine("Grades are:");

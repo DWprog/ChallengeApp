@@ -12,7 +12,7 @@ namespace ConsoleApp
             Console.WriteLine("===========================================");
             Console.WriteLine();
 
-            var employee = new Employee("Adam", "Kowalski",'M', 35);
+            var supervisor = new Supervisor("Tomasz", "Nowak");
 
             while (true)
             {
@@ -26,7 +26,7 @@ namespace ConsoleApp
 
                 try
                 {
-                    employee.AddGrade(input);
+                    supervisor.AddGrade(input);
 
                 }
                 catch (Exception e)
@@ -37,8 +37,8 @@ namespace ConsoleApp
             }
 
 
-            var statistics = employee.GetStatistics();
-            employee.ShowStatistics(statistics);
+            var statistics = supervisor.GetStatistics();
+            supervisor.ShowStatistics(statistics);
         }
     }
 }
