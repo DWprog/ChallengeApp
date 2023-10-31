@@ -28,57 +28,6 @@ namespace ConsoleApp
             }
         }
 
-        public override void AddGrade(string grade)
-        {
-            if (double.TryParse(grade, out double result))
-            {
-                this.AddGrade(result);
-            }
-            else if (char.TryParse(grade, out char resultChar))
-            {
-                this.AddGrade(resultChar);
-            }
-            else
-            {
-                throw new Exception("String is not double");
-            }
-        }
-
-        public override void AddGrade(float grade)
-        {
-            this.AddGrade((double)grade);
-        }
-
-        public override void AddGrade(int grade)
-        {
-            this.AddGrade((double)grade);
-        }
-
-        public override void AddGrade(char grade)
-        {
-            switch (char.ToLower(grade))
-            {
-                case 'a':
-                    this.AddGrade(100);
-                    break;
-                case 'b':
-                    this.AddGrade(80);
-                    break;
-                case 'c':
-                    this.AddGrade(60);
-                    break;
-                case 'd':
-                    this.AddGrade(40);
-                    break;
-                case 'e':
-                    this.AddGrade(20);
-                    break;
-
-                default:
-                    throw new Exception("Wrong Letter");
-            }
-        }
-
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
