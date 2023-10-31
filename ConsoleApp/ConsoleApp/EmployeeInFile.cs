@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ConsoleApp
 {
@@ -83,35 +85,23 @@ namespace ConsoleApp
 
             if (File.Exists(fileName))
             {
-                result.Average = 0;
-                result.Max = int.MinValue;
-                result.Min = int.MaxValue;
-                result.Sum = 0;
+                var grades = new List<double>();
 
                 using (var reader = File.OpenText(fileName))
                 {
                     var line = reader.ReadLine();
-                    int count = 0;
                     while (line != null)
                     {
                         var number = double.Parse(line);
-                        if (number > result.Max)
-                        {
-                            result.Max = number;
-                        }
-                        if (number < result.Min)
-                        {
-                            result.Min = number;
-                        }
-                        result.Sum += number;
-                        count++;
+                        grades.Add(number);
                         line = reader.ReadLine();
                     }
-                    if (count > 0)
-                    {
-                        result.Average = result.Sum / count;
-                    }
                 }
+
+                result.Average = grades.Average();
+                result.Max = grades.Max();
+                result.Min = grades.Min();
+                result.Sum = grades.Sum();
 
                 switch (result.Average)
                 {
