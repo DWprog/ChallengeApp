@@ -12,33 +12,39 @@ namespace ConsoleApp
             Console.WriteLine("===========================================");
             Console.WriteLine();
 
-            var supervisor = new Supervisor("Tomasz", "Nowak");
+            var employee = new EmployeeInFile("Tomasz", "Nowak");
 
-            while (true)
-            {
-                Console.Write("Podaj kolejną ocenę pracownika: ");
-                var input = Console.ReadLine();
-                if (input == "q")
-                {
-                    Console.WriteLine();
-                    break;
-                }
+            //while (true)
+            //{
+            //    Console.Write("Podaj kolejną ocenę pracownika: ");
+            //    var input = Console.ReadLine();
+            //    if (input == "q")
+            //    {
+            //        Console.WriteLine();
+            //        break;
+            //    }
 
-                try
-                {
-                    supervisor.AddGrade(input);
+            //    try
+            //    {
+            //        employee.AddGrade(input);
 
-                }
-                catch (Exception e)
-                {
+            //    }
+            //    catch (Exception e)
+            //    {
 
-                    Console.WriteLine($"Exception catched: {e.Message}");
-                }
-            }
+            //        Console.WriteLine($"Exception catched: {e.Message}");
+            //    }
+            //}
 
+            var statistics = employee.GetStatistics();
 
-            var statistics = supervisor.GetStatistics();
-            supervisor.ShowStatistics(statistics);
+            Console.WriteLine($"Statistic of employee {employee.Name} {employee.Surname}");
+            Console.WriteLine($"Average: {statistics.Average:N2}");
+            Console.WriteLine($"Max: {statistics.Max}");
+            Console.WriteLine($"Min: {statistics.Min}");
+            Console.WriteLine($"Sum: {statistics.Sum}");
+            Console.WriteLine($"Average letter: {statistics.AverageLetter}");
+            Console.WriteLine();
         }
     }
 }

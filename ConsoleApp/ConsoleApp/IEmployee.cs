@@ -16,6 +16,7 @@ namespace ConsoleApp
         public void AddGrade(string grade);
 
         public void AddGrade(float grade);
+        public void AddGrade(int grade);
 
         public void AddGrade(char grade);
 
