@@ -31,29 +31,12 @@ namespace ConsoleApp
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = this.grades.Average();
-            statistics.Max = this.grades.Max();
-            statistics.Min = this.grades.Min();
-            statistics.Sum = this.grades.Sum();
 
-            switch (statistics.Average)
+            foreach (var grade in this.grades)
             {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
+                statistics.AddGrade(grade);
             }
+           
 
             return statistics;
         }

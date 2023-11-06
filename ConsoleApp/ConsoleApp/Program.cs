@@ -16,14 +16,6 @@ namespace ConsoleApp
             var employee = new EmployeeInFile("Tomasz", "Nowak");
             employee.GradeAdded += EmployeeGradeAdded;
 
-            void EmployeeGradeAdded(object sender, EventArgs args)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Dodano nową ocenę");
-                Console.ResetColor();
-                Console.Beep();
-            }
-
             while (true)
             {
                 Console.Write("Podaj kolejną ocenę pracownika: ");
@@ -46,15 +38,32 @@ namespace ConsoleApp
                 }
             }
 
-            var statistics = employee.GetStatistics();
+            try
+            {
+                var statistics = employee.GetStatistics();
 
-            Console.WriteLine($"Statistic of employee {employee.Name} {employee.Surname}");
-            Console.WriteLine($"Average: {statistics.Average:N2}");
-            Console.WriteLine($"Max: {statistics.Max}");
-            Console.WriteLine($"Min: {statistics.Min}");
-            Console.WriteLine($"Sum: {statistics.Sum}");
-            Console.WriteLine($"Average letter: {statistics.AverageLetter}");
-            Console.WriteLine();
+                Console.WriteLine($"Statistic of employee {employee.Name} {employee.Surname}");
+                Console.WriteLine($"Average: {statistics.Average:N2}");
+                Console.WriteLine($"Max: {statistics.Max}");
+                Console.WriteLine($"Min: {statistics.Min}");
+                Console.WriteLine($"Sum: {statistics.Sum}");
+                Console.WriteLine($"Count: {statistics.Count}");
+                Console.WriteLine($"Average letter: {statistics.AverageLetter}");
+                Console.WriteLine();
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception catched: {e.Message}");
+            }
+
+            void EmployeeGradeAdded(object sender, EventArgs args)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Dodano nową ocenę");
+                Console.ResetColor();
+                Console.Beep();
+            }
         }
     }
 }

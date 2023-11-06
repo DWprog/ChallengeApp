@@ -37,46 +37,18 @@ namespace ConsoleApp
 
             if (File.Exists(fileName))
             {
-                var grades = new List<double>();
-
                 using (var reader = File.OpenText(fileName))
                 {
                     var line = reader.ReadLine();
                     while (line != null)
                     {
                         var number = double.Parse(line);
-                        grades.Add(number);
+                        result.AddGrade(number);
                         line = reader.ReadLine();
                     }
                 }
 
-                if (grades.Count != 0)
-                {
-                    result.Average = grades.Average();
-                    result.Max = grades.Max();
-                    result.Min = grades.Min();
-                    result.Sum = grades.Sum();
-
-                    switch (result.Average)
-                    {
-                        case var average when average >= 80:
-                            result.AverageLetter = 'A';
-                            break;
-                        case var average when average >= 60:
-                            result.AverageLetter = 'B';
-                            break;
-                        case var average when average >= 40:
-                            result.AverageLetter = 'C';
-                            break;
-                        case var average when average >= 20:
-                            result.AverageLetter = 'D';
-                            break;
-                        default:
-                            result.AverageLetter = 'E';
-                            break;
-                    }
-                }
-                else
+                if (result.Count == 0)
                 {
                     throw new Exception($"The file {fileName} does not contain grades");
                 }
