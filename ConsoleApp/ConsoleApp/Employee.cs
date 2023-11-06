@@ -123,5 +123,10 @@ namespace ConsoleApp
             Console.WriteLine($"Average letter: {statistics.AverageLetter}");
             Console.WriteLine();
         }
+
+        public void AddGrade(int grade)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -12,29 +12,39 @@ namespace ConsoleApp
             Console.WriteLine("===========================================");
             Console.WriteLine();
 
+            //var employee = new EmployeeInMemory("Tomasz", "Nowak");
             var employee = new EmployeeInFile("Tomasz", "Nowak");
+            employee.GradeAdded += EmployeeGradeAdded;
 
-            //while (true)
-            //{
-            //    Console.Write("Podaj kolejną ocenę pracownika: ");
-            //    var input = Console.ReadLine();
-            //    if (input == "q")
-            //    {
-            //        Console.WriteLine();
-            //        break;
-            //    }
+            void EmployeeGradeAdded(object sender, EventArgs args)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Dodano nową ocenę");
+                Console.ResetColor();
+                Console.Beep();
+            }
 
-            //    try
-            //    {
-            //        employee.AddGrade(input);
+            while (true)
+            {
+                Console.Write("Podaj kolejną ocenę pracownika: ");
+                var input = Console.ReadLine();
+                if (input == "q")
+                {
+                    Console.WriteLine();
+                    break;
+                }
 
-            //    }
-            //    catch (Exception e)
-            //    {
+                try
+                {
+                    employee.AddGrade(input);
 
-            //        Console.WriteLine($"Exception catched: {e.Message}");
-            //    }
-            //}
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine($"Exception catched: {e.Message}");
+                }
+            }
 
             var statistics = employee.GetStatistics();
 

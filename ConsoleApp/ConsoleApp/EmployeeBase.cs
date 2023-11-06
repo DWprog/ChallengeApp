@@ -4,6 +4,10 @@ namespace ConsoleApp
 {
     public abstract class EmployeeBase : IEmployee
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public abstract event GradeAddedDelegate GradeAdded;
+
         public EmployeeBase(string name, string surname)
         {
             this.Name = name;
@@ -36,12 +40,12 @@ namespace ConsoleApp
             this.AddGrade((double)grade);
         }
 
-        public  void AddGrade(int grade)
+        public void AddGrade(int grade)
         {
             this.AddGrade((double)grade);
         }
 
-        public  void AddGrade(char grade)
+        public void AddGrade(char grade)
         {
             switch (char.ToLower(grade))
             {

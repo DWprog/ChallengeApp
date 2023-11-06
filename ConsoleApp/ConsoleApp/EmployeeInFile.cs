@@ -7,6 +7,8 @@ namespace ConsoleApp
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -21,6 +23,7 @@ namespace ConsoleApp
                 {
                     writer.WriteLine(grade);
                 }
+                GradeAdded?.Invoke(this, new EventArgs());
             }
             else
             {
@@ -47,33 +50,40 @@ namespace ConsoleApp
                     }
                 }
 
-                result.Average = grades.Average();
-                result.Max = grades.Max();
-                result.Min = grades.Min();
-                result.Sum = grades.Sum();
-
-                switch (result.Average)
+                if (grades.Count != 0)
                 {
-                    case var average when average >= 80:
-                        result.AverageLetter = 'A';
-                        break;
-                    case var average when average >= 60:
-                        result.AverageLetter = 'B';
-                        break;
-                    case var average when average >= 40:
-                        result.AverageLetter = 'C';
-                        break;
-                    case var average when average >= 20:
-                        result.AverageLetter = 'D';
-                        break;
-                    default:
-                        result.AverageLetter = 'E';
-                        break;
+                    result.Average = grades.Average();
+                    result.Max = grades.Max();
+                    result.Min = grades.Min();
+                    result.Sum = grades.Sum();
+
+                    switch (result.Average)
+                    {
+                        case var average when average >= 80:
+                            result.AverageLetter = 'A';
+                            break;
+                        case var average when average >= 60:
+                            result.AverageLetter = 'B';
+                            break;
+                        case var average when average >= 40:
+                            result.AverageLetter = 'C';
+                            break;
+                        case var average when average >= 20:
+                            result.AverageLetter = 'D';
+                            break;
+                        default:
+                            result.AverageLetter = 'E';
+                            break;
+                    }
+                }
+                else
+                {
+                    throw new Exception($"The file {fileName} does not contain grades");
                 }
             }
             else
             {
-                throw new Exception($"File {fileName} does not exist");
+                throw new Exception($"The file {fileName} does not exist");
             }
 
             return result;

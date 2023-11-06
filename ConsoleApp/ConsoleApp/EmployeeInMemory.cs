@@ -6,6 +6,8 @@ namespace ConsoleApp
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+
         private List<double> grades = new List<double>();
         public EmployeeInMemory(string name, string surname)
             : base(name, surname)
@@ -17,6 +19,8 @@ namespace ConsoleApp
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+
+                GradeAdded?.Invoke(this, new EventArgs());
             }
             else
             {
