@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp.EmployeeBase;
 
 namespace ConsoleApp
 {
@@ -17,7 +18,7 @@ namespace ConsoleApp
         void AddGrade(int grade);
         void AddGrade(char grade);
 
-        //event GradeAddedDelegate GradeAdded;
+        event GradeAddedDelegate GradeAdded;
 
         Statistics GetStatistics();
     }

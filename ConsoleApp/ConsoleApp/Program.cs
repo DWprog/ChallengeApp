@@ -29,11 +29,9 @@ namespace ConsoleApp
                 try
                 {
                     employee.AddGrade(input);
-
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine($"Exception catched: {e.Message}");
                 }
             }
